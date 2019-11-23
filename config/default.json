@@ -1,0 +1,6 @@
+{
+  "GATEWAY": "/devGateway/",
+  "PUBLIC_PATH": "/",
+  "SOURCE_MAP": true,
+  "PORT": 3000
+}

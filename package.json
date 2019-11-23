@@ -1,0 +1,115 @@
+{
+  "name": "react-ts-tpl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "chenwei",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack-dev-server --config webpack/webpack.dev.js --open --hot",
+    "build:prod": "NODE_ENV=production NODE_CONFIG_ENV=production webpack --config webpack/webpack.prod.js",
+    "analyz": "BUNDLE_VISUALIZE=true npm_config_report=true npm run build:prod",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --fix --ext .js,.ts,.tsx",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "config": "^3.2.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "7.7.0",
+    "@babel/plugin-proposal-decorators": "7.7.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
+    "@babel/runtime-corejs3": "^7.7.2",
+    "@loadable/component": "^5.10.3",
+    "@types/loadable__component": "^5.10.0",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router-config": "^5.0.1",
+    "@types/react-router-dom": "^5.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "add-asset-html-webpack-plugin": "^3.1.3",
+    "antd": "^3.25.1",
+    "autoprefixer": "^9.7.1",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-import": "^1.12.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "commitizen": "^4.0.3",
+    "core-js": "^3.4.1",
+    "css-loader": "^3.2.0",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "mobx": "^5.15.0",
+    "mobx-react": "^6.1.4",
+    "mockjs": "^1.1.0",
+    "moment-locales-webpack-plugin": "^1.1.2",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
+    "sass-loader": "^8.0.0",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "style-loader": "^1.0.0",
+    "typescript": "^3.7.2",
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2",
+    "workbox-webpack-plugin": "^4.3.1",
+    "yargs-parser": "^16.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{.ts,.tsx}": [
+      "eslint",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "browserslist": {
+    "production": [
+      "ie >= 10",
+      "last 10 Chrome version",
+      "last 10 Firefox version",
+      "last 2 Edge version",
+      "Safari >= 8",
+      "last 5 Opera version"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

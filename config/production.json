@@ -1,0 +1,6 @@
+{
+  "GATEWAY": "/prodGateway/",
+  "PUBLIC_PATH": "/prod/",
+  "SOURCE_MAP": false,
+  "PORT": 3001
+}
