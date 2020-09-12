@@ -79,7 +79,7 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
     "workbox-webpack-plugin": "^4.3.1",
-    "yargs-parser": "^16.1.0"
+    "yargs-parser": "^18.1.2"
   },
   "husky": {
     "hooks": {
