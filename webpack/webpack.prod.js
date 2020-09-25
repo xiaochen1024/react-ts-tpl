@@ -1,6 +1,6 @@
 /** @format */
 
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const config = require('config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -82,14 +82,14 @@ const prodConfig = {
     hints: 'warning',
     maxAssetSize: 100000,
     maxEntrypointSize: 100000,
-    assetFilter: function(assetFilename) {
+    assetFilter: function (assetFilename) {
       return /\.(png|jpe?g|gif|svg)(\?.*)?$/.test(assetFilename)
     }
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'index.html', //node启动改成ejs
       template: 'public/index.html',
       inject: true,
       minify: {
@@ -97,7 +97,8 @@ const prodConfig = {
         collapseWhitespace: true,
         removeAttributeQuotes: true
       },
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'auto',
+      config: JSON.stringify(config)
     }),
     new ScriptExtHtmlWebpackPlugin({
       inline: /runtime\..*\.js$/

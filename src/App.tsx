@@ -7,16 +7,17 @@ import { createBrowserHistory } from 'history'
 import { renderRoutes, RouteConfig } from 'react-router-config'
 import { ConfigProvider } from 'antd'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
-import loadable, { LoadableComponent } from '@loadable/component'
+import loadable /*, { LoadableComponent }*/ from '@loadable/component'
 import { Spin } from 'antd'
 import 'moment/locale/zh-cn'
+import config from '@/config'
 
 import './styles/index.less'
 import TodoStore from '@/stores/TodoStore'
 import loaderStore from '@/stores/LoaderStore'
 
 const history = createBrowserHistory({
-  basename: `${process.env.PUBLIC_PATH}`
+  basename: `${config.PUBLIC_PATH}`
 })
 
 const stores = {
@@ -48,7 +49,7 @@ const routes = [
 
 @observer
 export default class App extends Component {
-  public render() {
+  render() {
     return (
       <Spin spinning={loaderStore.loading}>
         <ConfigProvider locale={zh_CN}>

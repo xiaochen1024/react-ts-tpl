@@ -30,13 +30,17 @@ const getStyleLoader = (cssOpt, otherLoader, otherOpt) => {
       options: {
         sourceMap: config.SOURCE_MAP
       }
-    },
+    }
     // 'postcss-loader'
   ]
   if (otherLoader) {
+    const opt = { sourceMap: config.SOURCE_MAP }
+    if (otherLoader === 'less-loader') {
+      opt.lessOptions = otherOpt
+    }
     loaders.push({
       loader: require.resolve(otherLoader),
-      options: { sourceMap: config.SOURCE_MAP, ...otherOpt }
+      options: { sourceMap: config.SOURCE_MAP, ...opt }
     })
   }
   return loaders

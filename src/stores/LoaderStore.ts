@@ -1,21 +1,23 @@
+/** @format */
+
 import { action, observable } from 'mobx'
 
 export class LoaderStore {
-  @observable public loading: boolean
+  @observable loading: boolean
 
-  constructor () {
+  constructor() {
     this.loading = false
   }
 
-  @action  public loaderStart () {
+  @action loaderStart() {
     this.loading = true
   }
 
-  @action public loaderEnd () {
+  @action loaderEnd() {
     this.loading = false
   }
 
-  public get getLoading (): boolean {
+  get getLoading(): boolean {
     return this.loading
   }
 }

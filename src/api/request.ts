@@ -5,13 +5,14 @@ import { message } from 'antd'
 
 import { TOKEN } from '@/constants'
 import loaderStore from '@/stores/LoaderStore'
+import config from '@/config'
 
-let reqCount: number = 0
+let reqCount = 0
 
 axios.defaults.timeout = 5000
 
 const agent = axios.create({
-  baseURL: process.env.GATEWAY,
+  baseURL: config.GATEWAY,
   withCredentials: true,
   headers: {
     common: {

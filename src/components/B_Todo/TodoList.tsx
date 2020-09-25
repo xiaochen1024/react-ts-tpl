@@ -21,7 +21,7 @@ export class TodoList extends React.Component<ITodoListProps, ITodoListState> {
     this.state = { description: '' }
   }
 
-  public render() {
+  render() {
     const store = this.props.store
     return (
       <div className={styles['todo-list']}>

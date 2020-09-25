@@ -18,10 +18,10 @@ interface Props {
 }))
 @observer
 class Home extends Component<Props> {
-  public async componentDidMount() {
+  async componentDidMount() {
     this.props.todoStore.fetchTodo()
   }
-  public render() {
+  render() {
     const { route, todoStore } = this.props
     return (
       <div className={styles['home-page']}>

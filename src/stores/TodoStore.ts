@@ -5,9 +5,9 @@ import TodoTask from './TodoTask'
 import todoApi from '@/api/todoApi'
 
 export class TodoStore {
-  @observable public todos: TodoTask[] = []
+  @observable todos: TodoTask[] = []
 
-  @action public async fetchTodo() {
+  @action async fetchTodo() {
     const result: any = await todoApi.fetchTodoReq()
     this.todos = result || []
   }
@@ -24,7 +24,7 @@ export class TodoStore {
     return `Next todo: "${this.todos[0].description}". ` + `Progress: ${this.completedTodosCount}/${this.todos.length}`
   }
 
-  @action public addTodo(task: string) {
+  @action addTodo(task: string) {
     this.todos.push(new TodoTask(task))
   }
 }

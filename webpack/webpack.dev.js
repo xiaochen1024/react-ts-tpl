@@ -1,7 +1,7 @@
 /** @format */
 
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('config')
 const baseConfig = require('./webpack.base')
@@ -13,7 +13,8 @@ const devConfig = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'public/index.html',
-      inject: true
+      inject: true,
+      config: JSON.stringify(config)
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
