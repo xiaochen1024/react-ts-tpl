@@ -5,7 +5,7 @@ import { message } from 'antd'
 
 import { TOKEN } from '@/constants'
 import loaderStore from '@/stores/LoaderStore'
-import config from '@/config'
+import config from '@/utils/config'
 
 let reqCount = 0
 

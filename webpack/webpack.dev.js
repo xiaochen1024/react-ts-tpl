@@ -3,7 +3,9 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const config = require('config')
+const path = require('path')
 const baseConfig = require('./webpack.base')
 
 const devConfig = {
@@ -16,7 +18,17 @@ const devConfig = {
       inject: true,
       config: JSON.stringify(config)
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DllReferencePlugin({
+      manifest: require('../public/dll/vendor.manifest.json')
+    }),
+    new AddAssetHtmlPlugin([
+      {
+        filepath: require.resolve(path.resolve(__dirname, '../public/dll/vendor.dll.js')),
+        outputPath: 'vendor',
+        publicPath: 'vendor'
+      }
+    ])
   ],
   devServer: {
     host: 'localhost',

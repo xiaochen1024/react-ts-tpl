@@ -5,6 +5,7 @@ const config = require('config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
@@ -107,6 +108,19 @@ const prodConfig = {
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       publicPath: config.PUBLIC_PATH
+    }),
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS: {
+        output: {
+          comments: false
+        },
+        warnings: false,
+        compress: {
+          drop_debugger: true,
+          drop_console: true
+        }
+      }
     })
   ]
 }

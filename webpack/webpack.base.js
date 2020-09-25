@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const config = require('config')
 const path = require('path')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const theme = require('./theme')
 
 const env = process.env.NODE_ENV
@@ -57,6 +58,12 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         include: [resolve('../src')],
         use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: 3
+            }
+          },
           {
             loader: 'babel-loader'
           }
@@ -141,6 +148,7 @@ module.exports = {
     new webpack.DefinePlugin(defineEnv),
     new MomentLocalesPlugin({
       localesToKeep: ['zh-cn']
-    })
+    }),
+    new ProgressBarPlugin()
   ]
 }

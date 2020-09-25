@@ -22,8 +22,8 @@ const config = require('config')
 app.use(config.PUBLIC_PATH, express.static('dist'))
 const dist = path.resolve(__dirname, 'dist')
 
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/dist')
+// app.set('view engine', 'ejs')
+// app.set('views', __dirname + '/dist')
 app.get('*', (req, res) => {
   res.set('X-XSS-Protection', '1; mode=block')
   res.set('X-Content-Type-Options', 'nosniff')

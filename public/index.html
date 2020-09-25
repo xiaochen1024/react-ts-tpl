@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>React-TS-Tempalte</title>
+  <!-- node启动改成config注入 -->
   <script type="application/json">
-    <%= htmlWebpackPlugin ? htmlWebpackPlugin.options.config : config %>
+    <%= htmlWebpackPlugin.options.config %>
   </script>
 </head>
 
