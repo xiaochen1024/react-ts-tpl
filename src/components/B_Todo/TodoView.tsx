@@ -2,11 +2,11 @@
 
 import { observer } from 'mobx-react'
 import * as React from 'react'
-import TodoTask from '@/stores/TodoTask'
+import TodoItemStore from '@/stores/todoItem'
 import './TodoView.less'
 
 export interface ITodoViewProps {
-  todo: TodoTask
+  todo: TodoItemStore
 }
 
 @observer

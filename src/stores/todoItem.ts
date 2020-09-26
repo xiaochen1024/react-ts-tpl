@@ -2,7 +2,7 @@
 
 import { observable } from 'mobx'
 
-export class TodoTask {
+export default class TodoItemStore {
   @observable description: string
   @observable completed: boolean
 
@@ -11,5 +11,3 @@ export class TodoTask {
     this.completed = false
   }
 }
-
-export default TodoTask

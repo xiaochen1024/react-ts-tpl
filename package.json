@@ -66,8 +66,6 @@
     "less-loader": "^7.0.1",
     "lint-staged": "^10.4.0",
     "mini-css-extract-plugin": "^0.11.2",
-    "mobx": "^5.15.7",
-    "mobx-react": "^6.3.0",
     "mockjs": "^1.1.0",
     "moment-locales-webpack-plugin": "^1.2.0",
     "node-sass": "^4.14.1",
@@ -102,8 +100,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint",
-      "prettier",
+      "eslint --cache --fix",
+      "prettier --write",
       "git add"
     ]
   },

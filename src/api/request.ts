@@ -4,10 +4,7 @@ import axios from 'axios'
 import { message } from 'antd'
 
 import { TOKEN } from '@/constants'
-import loaderStore from '@/stores/LoaderStore'
 import config from '@/utils/config'
-
-let reqCount = 0
 
 axios.defaults.timeout = 5000
 
@@ -26,25 +23,15 @@ const agent = axios.create({
 
 agent.interceptors.request.use(
   config => {
-    if (reqCount === 0) {
-      if (config.headers.showLoading !== false) {
-        loaderStore.loaderStart()
-      }
-    }
     const demoToken = JSON.parse(localStorage.getItem(TOKEN) || '""')
     if (demoToken) {
       config.headers.token = `${demoToken}`
     } else {
       delete config.headers.token
     }
-    reqCount++
     return config
   },
   error => {
-    reqCount--
-    if (reqCount === 0) {
-      loaderStore.loaderEnd()
-    }
     return Promise.reject(error)
   }
 )
@@ -65,18 +52,9 @@ agent.interceptors.response.use(
     //   Promise.reject(response.data)
     // }
 
-    reqCount--
-    if (reqCount === 0) {
-      loaderStore.loaderEnd()
-    }
-
     return response
   },
   error => {
-    reqCount--
-    if (reqCount === 0) {
-      loaderStore.loaderEnd()
-    }
     if (error.response && error.request) {
       if (error.response.status === 504) {
         message.error({

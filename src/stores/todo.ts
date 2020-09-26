@@ -1,14 +1,14 @@
 /** @format */
 
 import { computed, action, observable } from 'mobx'
-import TodoTask from './TodoTask'
-import todoApi from '@/api/todoApi'
+import TodoItemStore from './todoItem'
+import axios from '@/api/request'
 
 export class TodoStore {
-  @observable todos: TodoTask[] = []
+  @observable todos: TodoItemStore[] = []
 
   @action async fetchTodo() {
-    const result: any = await todoApi.fetchTodoReq()
+    const result: any = (await axios.get(`todo/list`)).data.todoList
     this.todos = result || []
   }
 
@@ -25,8 +25,8 @@ export class TodoStore {
   }
 
   @action addTodo(task: string) {
-    this.todos.push(new TodoTask(task))
+    this.todos.push(new TodoItemStore(task))
   }
 }
 
-export default TodoStore
+export default new TodoStore()
