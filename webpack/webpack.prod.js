@@ -5,13 +5,15 @@ const config = require('config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const path = require('path')
 const baseConfig = require('./webpack.base')
+const { htmlArray, getHtmlConfig } = require('./utils')
 
+const appMode = process.env.APP_MODE
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -89,18 +91,6 @@ const prodConfig = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html', //node启动改成ejs
-      template: 'public/index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-      },
-      chunksSortMode: 'auto',
-      config: JSON.stringify(config)
-    }),
     new ScriptExtHtmlWebpackPlugin({
       inline: /runtime\..*\.js$/
     }),
@@ -128,5 +118,26 @@ if (process.env.BUNDLE_VISUALIZE) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   prodConfig.plugins.push(new BundleAnalyzerPlugin())
 }
-
+if (appMode === 'mpa') {
+  htmlArray.forEach(element => {
+    prodConfig.plugins.push(new HtmlWebpackPlugin(getHtmlConfig(element._html, element.chunks)))
+  })
+} else {
+  prodConfig.plugins.push(
+    new HtmlWebpackPlugin(
+      new HtmlWebpackPlugin({
+        filename: 'index.html', //node启动改成ejs
+        template: 'public/index.html',
+        inject: true,
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true
+        },
+        chunksSortMode: 'auto',
+        config: JSON.stringify(config)
+      })
+    )
+  )
+}
 module.exports = merge(baseConfig, prodConfig)

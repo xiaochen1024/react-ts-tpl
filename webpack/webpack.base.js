@@ -5,9 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const config = require('config')
 const path = require('path')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const theme = require('./theme')
+const { getEntry } = require('./utils')
 
+const appMode = process.env.APP_MODE
 const env = process.env.NODE_ENV
 const isProd = env === 'production'
 function resolve(dir) {
@@ -48,7 +50,7 @@ const getStyleLoader = (cssOpt, otherLoader, otherOpt) => {
 }
 
 module.exports = {
-  entry: resolve('../src/index.tsx'),
+  entry: appMode === 'mpa' ? getEntry() : resolve('../src/index.tsx'),
   output: {
     publicPath: config.PUBLIC_PATH
   },

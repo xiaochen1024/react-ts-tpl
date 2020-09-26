@@ -5,9 +5,9 @@
   "author": "chenwei",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config webpack/webpack.dev.js --open --hot",
-    "build:prod": "NODE_ENV=production NODE_CONFIG_ENV=production webpack --config webpack/webpack.prod.js",
-    "build:dll": "NODE_ENV=development webpack --config webpack/webpack_dll.config.js",
+    "dev": "APP_MODE=spa NODE_ENV=development webpack-dev-server --config webpack/webpack.dev.js --open --hot",
+    "build:prod": "APP_MODE=spa NODE_ENV=production NODE_CONFIG_ENV=production webpack --config webpack/webpack.prod.js",
+    "build:dll": "APP_MODE=spa NODE_ENV=development webpack --config webpack/webpack_dll.config.js",
     "analyz": "BUNDLE_VISUALIZE=true npm_config_report=true npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --fix --ext .js,.ts,.tsx",
