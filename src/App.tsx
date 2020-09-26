@@ -38,15 +38,15 @@ const stores = {
 const routes = [
   {
     path: '/',
-    component: loadable(() => import(/* webpackChunkName: "home" */ './views/Home')),
+    component: loadable(() => import(/* webpackChunkName: "home" */ './pages/Home')),
     children: [
       {
         path: '/child',
-        component: loadable(() => import(/* webpackChunkName: "child" */ './views/Child')),
+        component: loadable(() => import(/* webpackChunkName: "child" */ './pages/Child')),
         children: [
           {
             path: '/child/c1',
-            component: loadable(() => import(/* webpackChunkName: "child1" */ './views/Child1'))
+            component: loadable(() => import(/* webpackChunkName: "child1" */ './pages/Child1'))
           }
         ]
       }

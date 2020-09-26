@@ -5,6 +5,7 @@ import { inject, observer, useLocalStore, useObserver } from 'mobx-react'
 import { renderRoutes } from 'react-router-config'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'antd'
+import { useSpring, animated } from 'react-spring'
 
 import todoStore, { TodoStore } from '@/stores/todo'
 
@@ -55,6 +56,14 @@ const AsyncHook = memo(() => {
   return <Button loading={loading}>{success ? data.todoList[0]?.description : ''}</Button>
 })
 
+function Animated() {
+  const props = useSpring({
+    opacity: 1,
+    from: { opacity: 0 }
+  })
+  return <animated.div style={props}>I will fade in</animated.div>
+}
+
 @inject((stores: Props) => ({
   todoStore: stores.todoStore
 }))
@@ -71,6 +80,7 @@ class Home extends PureComponent<Props> {
         {/* <FuncWapper /> */}
         <Hook />
         <AsyncHook />
+        <Animated />
         <TodoList store={todoStore} />
         <>{renderRoutes(route.children)}</>
       </div>
